@@ -16,6 +16,13 @@ fn main() {
 
     even_filter_in_place(&mut vec2);
     println!("even filter in place: {:?}", vec2);
+
+    // Initialise a vector with rust macro. Also can explicitly give type using generics
+    // if never declare type then it's inferred (like typescript or golang)
+    let numbers: Vec<i32> = vec![1,2,3];
+    for i in 0..numbers.len() {
+        println!("number {}", numbers[i]);
+    }
 }
 
 fn even_filter(vec: &Vec<i32>) -> Vec<i32> {
