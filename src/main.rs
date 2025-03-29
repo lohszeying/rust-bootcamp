@@ -1,16 +1,13 @@
-struct User {
-    name: String,
-    age: u32,
-    active: bool,
-}
+// can call with cargo add chrono
+use chrono::{Local, Utc};
 
 fn main() {
-    let name = String::from("Alice");
-    let user = User{
-        name,
-        age: 30,
-        active: true,
-    };
-    print!("{} is {} years old", user.name, user.age);
-}
+    let now = Utc::now();
+    println!("Current time now in UTC: {}", now);
 
+    let formatted = now.format("%Y-%m-%d %H:%M:%S");
+    println!("Current time now in UTC, formatted: {}", formatted);
+
+    let local = Local::now();
+    println!("Local time now: {}", local);
+}
