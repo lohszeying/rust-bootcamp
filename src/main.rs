@@ -1,19 +1,33 @@
-// Usually the convention for generics is T, U, W, X, etc
-struct Point<T> {
-    x: T,
-    y: T,
+use std::fs;
+
+fn main() -> () {
+    let res = fs::read_to_string("example.txt");
+
+    match res {
+        Ok(content) => {
+            println!("File content: {}", content);
+        },
+        Err(err) => {
+            println!("Error: {}", err);
+        }
+    }
+
+    let res2 = read_from_file_own_err_implementation("example.txt".to_string());
+    match res2 {
+        Ok(content) => {
+            println!("File content: {}", content);
+        },
+        Err(err) => {
+            println!("Error: {}", err);
+        }
+    }
 }
 
-// Can also do it like this, but means the type of y and z must be the same now.
-// struct Point<A, B> {
-//     x: A,
-//     y: B,
-//     z: B,
-// }
-
-fn main() {
-    let integer_point = Point { x: 5, y: 10 };
-    let float_point = Point { x: 1.0, y: 4.0 };
-    println!("integer point: ({}, {})", integer_point.x, integer_point.y);
-    println!("float point: ({}, {})", float_point.x, float_point.y);
+fn read_from_file_own_err_implementation(file_content: String) -> Result<String, String> {
+    println!("reading from own fn...");
+    let res = fs::read_to_string(file_content);
+    match res {
+        Ok(content) => Ok(content),
+        Err(_) => Err("Error reading file".to_string()),
+    }
 }
