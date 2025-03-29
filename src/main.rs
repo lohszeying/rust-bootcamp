@@ -1,30 +1,19 @@
-enum Direction {
-    North,
-    South,
-    East,
-    West,
+// Usually the convention for generics is T, U, W, X, etc
+struct Point<T> {
+    x: T,
+    y: T,
 }
 
-enum Shape {
-    Circle(f64),
-    Square(f64),
-    Rectangle(f64, f64),
-}
-
-fn calculate_area(shape: Shape) -> f64 {
-    let ans= match shape {
-        Shape::Circle(radius) => std::f64::consts::PI * radius * radius,
-        Shape::Square(size) => size * size,
-        Shape::Rectangle(width, height) => width * height
-    };
-
-    return ans;
-}
+// Can also do it like this, but means the type of y and z must be the same now.
+// struct Point<A, B> {
+//     x: A,
+//     y: B,
+//     z: B,
+// }
 
 fn main() {
-    let circle = Shape::Circle(5.0);
-    let square = Shape::Circle(4.0);
-    let rectangle = Shape::Rectangle(3.0, 2.0);
-
-    print!("Area of circle: {}", calculate_area(circle));
+    let integer_point = Point { x: 5, y: 10 };
+    let float_point = Point { x: 1.0, y: 4.0 };
+    println!("integer point: ({}, {})", integer_point.x, integer_point.y);
+    println!("float point: ({}, {})", float_point.x, float_point.y);
 }
