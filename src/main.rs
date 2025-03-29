@@ -1,16 +1,10 @@
-struct User {
-    name: String,
-    age: u32,
-    active: bool,
-}
-
 fn main() {
-    let name = String::from("Alice");
-    let user = User{
-        name,
-        age: 30,
-        active: true,
-    };
-    print!("{} is {} years old", user.name, user.age);
+    let s1 = String::from("Hello");
+    let s2 = &s1;
+    print_str(s2);
+    println!("s1 is {}", s1.to_string())
 }
 
+fn print_str(s: &String) {
+    println!("string is: {}", s);
+}
