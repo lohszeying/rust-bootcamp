@@ -1,33 +1,17 @@
-use std::fs;
-
-fn main() -> () {
-    let res = fs::read_to_string("example.txt");
-
-    match res {
-        Ok(content) => {
-            println!("File content: {}", content);
-        },
-        Err(err) => {
-            println!("Error: {}", err);
+fn find_first_a(s: &str) -> Option<i32> {
+    for (index, character) in s.chars().enumerate() {
+        if character == 'a' {
+            return Some(index as i32);
         }
     }
-
-    let res2 = read_from_file_own_err_implementation("example.txt".to_string());
-    match res2 {
-        Ok(content) => {
-            println!("File content: {}", content);
-        },
-        Err(err) => {
-            println!("Error: {}", err);
-        }
-    }
+    // Note: can either use return None; or just None (is a return statement if there is no ;)
+    None
 }
 
-fn read_from_file_own_err_implementation(file_content: String) -> Result<String, String> {
-    println!("reading from own fn...");
-    let res = fs::read_to_string(file_content);
-    match res {
-        Ok(content) => Ok(content),
-        Err(_) => Err("Error reading file".to_string()),
+fn main() {
+    let my_string = String::from("hello world a");
+    match find_first_a(&my_string) {
+        Some(index) => println!("Found letter a in index {}", index),
+        None => println!("Couldn't find letter a within the string {}", my_string),
     }
 }
