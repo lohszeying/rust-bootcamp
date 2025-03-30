@@ -45,7 +45,39 @@ fn main() {
     for val in v3_iter {
         println!("into_iter val: {}", val);
     }
+
+    // ================================================
+
+    consuming_adapter();
+
+    // ================================================
+
+    iterator_adapter();
 }
 
+fn consuming_adapter() {
+    let v1 = vec![1,2,3];
+    let v1_iter = v1.iter();
 
+    let sum: i32 = v1_iter.sum();
+    // Note: v1_iter is consumed here in v1_iter.sum(), so I cannot use v1_iter anymore
 
+    println!("Sum: {:?}", sum);
+}
+
+// This function demonstrates the use of iterator adapters like .map() and .filter()
+// Iterator adapters are methods defined on iterator types that allow you to change iterators into different kinds of iterators.
+// Iterator adapters returns another iterator. A function on an original iterator that returns another iterator.
+fn iterator_adapter() {
+    let v1 = vec![1,2,3];
+    let v1_iter = v1.iter();
+
+    // .map and .filter works
+    let v1_iter2 = v1_iter.map(|x| x + 1);
+
+    for i in v1_iter2 {
+        println!("v1_iter2: {}", i);
+    }
+
+    let new_iter = v1.iter().filter(|x| *x % 2 == 1).map(|x| x + 1);
+}
