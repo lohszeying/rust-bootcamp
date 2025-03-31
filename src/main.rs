@@ -19,6 +19,8 @@
 
 // ===============================
 
+mod all_together;
+
 struct User<'a, 'b> {
     first_name: &'a str,
     last_name: &'b str,
